@@ -1,0 +1,11 @@
+services:
+  nginx-react:
+    build: .
+    ports: 
+      - "80:80"
+    volumes:
+      - react-dir:/frontend
+
+
+volumes:
+  react-dir:
