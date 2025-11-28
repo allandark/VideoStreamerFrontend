@@ -11,7 +11,8 @@ COPY Nginx/nginx.conf /etc/nginx/nginx.conf
 COPY React/Frontend /frontend 
 
 WORKDIR /frontend
-# RUN npm run build
+RUN npm i deps
+RUN npm run build
 
 ENTRYPOINT  ["./entry.sh"]
 

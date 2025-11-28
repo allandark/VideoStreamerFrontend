@@ -11,10 +11,12 @@ import { useNavigate } from "react-router-dom";
 export default function Home() {
     const [videos, setVideos] = useState<VideoModel[]>([]);
     const [genres, setGenres] = useState<GenreModel[]>([]);
+    const [selectedGenre, setSelectedGenre] = useState<string>("");
+    const [selectedSearch, setSelectedSearch] = useState<string>("");
     const navigate = useNavigate();
     useEffect(() => {
 
-        getVideos().then(data =>{
+        getVideos(selectedGenre, selectedSearch).then(data =>{
             console.log(data);
             setVideos(data);
         }).catch(err =>{
@@ -27,7 +29,7 @@ export default function Home() {
             console.log(err);
         });
         
-    }, []);
+    }, [selectedGenre, selectedSearch]);
 
 
     const onPlayVideo = (video : VideoModel) => {
@@ -50,6 +52,10 @@ export default function Home() {
                 <div className="relative flex-1">
                     <input
                     type="text"
+                    onChange={(event) => {
+ 
+                        setSelectedSearch(event.target.value);
+                    } }
                     placeholder="Search videos..."
                     className="w-full rounded-lg bg-gray-800/70 text-gray-100 placeholder-gray-400 px-4 py-3 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
@@ -73,12 +79,16 @@ export default function Home() {
                     <select
                     className="w-full rounded-lg bg-gray-800/70 text-gray-100 px-4 py-3 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     defaultValue=""
+                    onChange={(event) => {
+                        console.log("on change: ", event.target.value);
+                        setSelectedGenre(event.target.value);
+                    }}
                     >
-                    <option value="" disabled>
+                    <option value="">
                         Select genre…
                     </option>
                     {genres.map((g, i) => (
-                            <option key={i} value={i}>{g.name}</option>
+                            <option key={i} value={g.name}>{g.name}</option>
                         ))}
                     </select>
                 </div>

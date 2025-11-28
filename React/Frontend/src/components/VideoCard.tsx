@@ -1,4 +1,4 @@
-import type { VideoModel, GenreModel } from "../Types";
+import type { VideoModel } from "../Types";
 import { useState, useEffect } from "react";
 import { getThumbnail } from "../api/api";
 
@@ -23,11 +23,7 @@ export default function VideoCard({video, onClick}: VideoCardProps){
         >
         {/* Thumbnail */}
         <div className="relative w-full aspect-video">
-            <img
-            src={thumbnailUrl}
-            alt="Thumbnail"
-            className="w-full h-full object-cover"
-            />
+            <img src={thumbnailUrl !== "" ? thumbnailUrl : "/src/assets/icon.png"} alt="Thumbnail" className="w-full h-full object-cover"/>
             {/* Optional overlay on hover */}
             <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity"></div>
         </div>

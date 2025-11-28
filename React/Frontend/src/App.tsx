@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+
 import Video from "./pages/Video";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
@@ -8,7 +8,7 @@ import User from "./pages/User";
 
 
 function App() {
-  const [videoId, setVideoId] = useState<number>(0);
+
   return (
     <BrowserRouter>
       <Routes>

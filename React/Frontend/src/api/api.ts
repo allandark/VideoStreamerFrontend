@@ -1,4 +1,4 @@
-import type { UserModel, VideoModel, GenreModel } from "../Types";
+import type { UserModel, VideoModel } from "../Types";
 
 
 
@@ -17,8 +17,28 @@ export async function getUsers() {
 }
 
 
-export async function getVideos(){
-  const res = await fetch(`${API_URL}/api/video_meta`, { credentials: 'include' });
+export async function getVideos(genre_name: string = "", search: string = ""){
+  let query: string = "?";
+  console.log(genre_name);
+  console.log(search);
+  
+  if (genre_name !== ""){
+    query = `${query}genre=${genre_name.toLowerCase()}`
+
+  }
+  if (search !== ""){
+    if( genre_name !== ""){
+      query = `${query}&search=${search.toLowerCase()}`
+    }else {
+      query = `${query}search=${search}`
+    }
+  }
+  let url = `${API_URL}/api/video_meta`;
+  if (query !== "?"){
+    url =  `${url}/${query}`;
+  } 
+  console.log(url);
+  const res = await fetch(url, { credentials: 'include' });
   if (!res.ok) {
     throw new Error(`Failed: ${res.status}`);
   }  
