@@ -3,6 +3,7 @@ services:
     build: .
     ports: 
       - "8080:8080"
+    restart: always
     environment:
       HOST: localhost
       SERVER_NAME: localhost
