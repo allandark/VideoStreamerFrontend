@@ -4,16 +4,15 @@ FROM nginx:latest
 RUN apt update
 RUN apt install nodejs npm -y
 
-EXPOSE 80
+EXPOSE 8080
 
-
-COPY Nginx/nginx.conf /etc/nginx/nginx.conf
+COPY Nginx/nginx.conf.template /etc/nginx/nginx.conf.template
 COPY React/Frontend /frontend 
 
 WORKDIR /frontend
 RUN npm i deps
 RUN npm run build
 
-ENTRYPOINT  ["./entry.sh"]
+CMD  ["/bin/bash", "./entry.sh"]
 
 

@@ -2,10 +2,16 @@ services:
   nginx-react:
     build: .
     ports: 
-      - "80:80"
-    volumes:
-      - react-dir:/frontend
+      - "8080:8080"
+    environment:
+      HOST: localhost
+      SERVER_NAME: localhost
+      PORT: 8080
+      API_SERVER_NAME: rest-api
+    networks: 
+      - backend
 
 
-volumes:
-  react-dir:
+networks: 
+  backend:
+    external: true
