@@ -46,7 +46,7 @@ export default function VideoPlayer({video_id}: VideoProps){
                 setCurrentLevel(hls.currentLevel); 
             });
 
-            hls.loadSource(`/api/media/playlist/${video_id}`);
+            hls.loadSource(`/api/media/hls/playlist/${video_id}`);
             hls.attachMedia(video);
         }
 

@@ -50,7 +50,7 @@ export async function getGenres(){
 }
 
 export async function getThumbnail(id: number){
-  const res = await fetch(`/api/media/thumbnail/${id}`, { credentials: 'include' });
+  const res = await fetch(`/api/media/hls/thumbnail/${id}`, { credentials: 'include' });
   if (!res.ok) {
     throw new Error(`Failed: ${res.status}`);
   }    
