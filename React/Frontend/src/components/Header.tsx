@@ -24,6 +24,12 @@ export default function Header() {
         >
         User
         </a>
+        <a
+        className={hoverStyle}
+        href={`/admin`}
+        >
+        Admin
+        </a>
     </nav>
    
     </div>

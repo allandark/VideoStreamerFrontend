@@ -32,7 +32,7 @@ http{
         index index.html;
 
         location / {
-            try_files $uri /index.html;          
+            try_files ${DOLLAR}uri /index.html;          
         }
 
         # API served by backend

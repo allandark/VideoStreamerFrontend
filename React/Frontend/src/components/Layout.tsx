@@ -11,7 +11,9 @@ export default function Layout({ children }: LayoutProps) {
     <div>
         <Header/>
         <main>
+            <div className="px-8 py-6 text-gray-100  bg-gray-700 min-h-screen">
             {children}
+            </div>
         </main>
     </div>);
 }

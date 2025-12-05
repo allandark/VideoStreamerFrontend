@@ -41,7 +41,7 @@ export default function Home() {
     return (
         <Layout >
             <div>
-                <div className="px-8 py-6 bg-gray-700 min-h-screen">
+                
                 <h2 className="text-3xl text-gray-100 font-bold text-center drop-shadow mb-8">Browse Videos</h2>
 
                 
@@ -111,7 +111,7 @@ export default function Home() {
 
             </div>
               
-            </div>
+            
 
         </Layout>
     );
