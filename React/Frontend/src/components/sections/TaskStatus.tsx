@@ -1,6 +1,6 @@
 
-import type { TaskHandle } from "../Types";
-import { CreatedAt } from "./CreatedAt";
+import type { TaskHandle } from "../../Types";
+import { CreatedAt } from "../elements/CreatedAt";
 
 
 
@@ -12,7 +12,7 @@ export default function TaskStatus({handle} : TaskCardProps){
   if(handle?.task && handle.task != null){
     return (
     
-    <div className="bg-gray-800 w-full rounded-lg shadow-md p-4 text-gray-200 hover:shadow-lg transition">
+    <div className="bg-gray-800 w-full h-105 rounded-lg overflow-hidden shadow-md p-4 text-gray-200 hover:shadow-lg transition">
       {/* Header */}
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-lg font-semibold text-blue-400">
@@ -55,16 +55,18 @@ export default function TaskStatus({handle} : TaskCardProps){
       {/* Params */}
       <div className="mt-3">
         <span className="font-medium text-gray-400">Params:</span>
-        <pre className="bg-gray-900 p-2 rounded text-xs overflow-x-auto mt-1">
-          {JSON.stringify(handle.task.params, null, 2)}
-        </pre>
+        <div className="max-h-60 overflow-auto bg-gray-900 rounded p-2 mt-1"> 
+          <pre className="text-xs m-0">
+            {JSON.stringify(handle.task.params, null, 2)}
+          </pre>
+        </div>
       </div>
     </div>    
     );
     }
     else{
         return (
-            <div className="bg-gray-800 w-full rounded-lg shadow-md p-4 text-gray-200 hover:shadow-lg transition">No Active task</div>
+            <div className="bg-gray-800 w-full rounded-lg  shadow-md p-4 text-gray-200 hover:shadow-lg transition">No Active task</div>
         );
     }
 };

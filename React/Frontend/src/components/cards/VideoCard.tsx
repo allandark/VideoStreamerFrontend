@@ -1,6 +1,6 @@
-import type { VideoModel } from "../Types";
+import type { VideoModel } from "../../Types";
 import { useState, useEffect } from "react";
-import { getThumbnail } from "../api/api";
+import { getThumbnail } from "../../api/Video";
 
 
 interface VideoCardProps {

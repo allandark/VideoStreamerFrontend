@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import type { MediaModel } from "../Types";
-import { getMediaFiles } from "../api/api";
+import type { MediaModel } from "../../Types";
+import { APIClient } from "../../api/api";
+
 
 interface HlsBuildFormProps{
     onUpdate: (media: MediaModel|undefined, params : JSON) => void;
@@ -42,12 +43,11 @@ function HlsBuildForm({onUpdate}: HlsBuildFormProps){
     };
 
     useEffect(() => {
-        getMediaFiles().then(data =>{
-                console.log(data);
-                setMedias(data);
-            }).catch(err =>{
-                console.log(err);
-        });
+        const client = new APIClient();
+        client.get<MediaModel>("media/upload").then(data =>{
+            setMedias(data);
+        }).catch((err)=> console.error(err))
+
 
     }, []);
 

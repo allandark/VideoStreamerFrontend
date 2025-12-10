@@ -1,9 +1,11 @@
 import Layout from "../components/Layout";
 import type { VideoModel, GenreModel } from "../Types";
 import { useEffect, useState } from "react";
-import { getVideos, getGenres } from "../api/api";
-import VideoCard from "../components/VideoCard";
+import {  APIClient } from "../api/api";
+import { getVideos } from "../api/Video";
+import VideoCard from "../components/cards/VideoCard";
 import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -15,19 +17,20 @@ export default function Home() {
     const [selectedSearch, setSelectedSearch] = useState<string>("");
     const navigate = useNavigate();
     useEffect(() => {
+        const client = new APIClient();
+        client.get<GenreModel>("genre").then(data =>{
+            console.log(data);
+            setGenres(data);
+        }).catch(err => console.error(err));
 
+      
         getVideos(selectedGenre, selectedSearch).then(data =>{
             console.log(data);
             setVideos(data);
         }).catch(err =>{
             console.log(err);
         });
-        getGenres().then(data =>{
-            console.log(data);
-            setGenres(data);
-        }).catch(err =>{
-            console.log(err);
-        });
+
         
     }, [selectedGenre, selectedSearch]);
 
@@ -43,6 +46,9 @@ export default function Home() {
             <div>
                 
                 <h2 className="text-3xl text-gray-100 font-bold text-center drop-shadow mb-8">Browse Videos</h2>
+
+
+
 
                 
             {/* Controls: Search + Genre */}

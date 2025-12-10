@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { TaskModel } from "../Types";
-import { getTasks } from "../api/api";
-import { CreatedAt } from "./CreatedAt";
+import type { TaskModel } from "../../Types";
+import { APIClient } from "../../api/api";
+import { CreatedAt } from "../elements/CreatedAt";
 
 interface TaskTableProps{
     uiState : string | undefined;
@@ -12,12 +12,11 @@ export default function TaskTable({uiState, onRowClicked} : TaskTableProps){
     const [tasks, setTasks] = useState<TaskModel[]>([])
 
     useEffect(() => {
-        getTasks().then(data =>{
-                console.log(data);
-                setTasks(data);
-            }).catch(err =>{
-                console.log(err);
-        });
+        const client = new APIClient();
+        client.get<TaskModel>("media/task").then(data =>{
+            setTasks(data);
+        }).catch((err)=> console.error(err))
+
 
     }, [uiState]);
 

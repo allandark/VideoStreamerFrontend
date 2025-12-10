@@ -11,4 +11,10 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+  build: {
+    sourcemap: true,        // generate source maps for your code
+  },
+  esbuild: {
+    sourcemap: false        // disables sourcemaps for dependencies
+  }
 })

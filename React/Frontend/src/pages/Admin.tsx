@@ -1,14 +1,13 @@
 import Layout from "../components/Layout";
-import CreateTaskForm from "../components/CreateTaskForm";
-import FileBrowser from "../components/FileBrowser";
-import TaskStatus from "../components/TaskStatus";
-import TaskTable from "../components/TaskTable";
+import CreateTaskForm from "../components/forms/CreateTaskForm";
+import FileBrowser from "../components/sections/FileBrowser";
+import TaskStatus from "../components/sections/TaskStatus";
+import TaskTable from "../components/sections/TaskTable";
 import { useState, useEffect } from "react";
 import type { TaskHandle } from "../Types";
 import { createInitialHandle } from "../Types";
-import { startUploadTask, updateUploadTask, completeUploadTask } from "../api/api";
-import { startHlsBuildTask, updateHlsBuildTask, completeHlsBuildTask } from "../api/api";
-
+import { startUploadTask,  updateUploadTask, completeUploadTask} from "../api/Task";
+import { startHlsBuildTask, updateHlsBuildTask, completeHlsBuildTask } from "../api/Task";
 
 
 export default function Admin() {
@@ -27,8 +26,8 @@ export default function Admin() {
                         .start(currentTask)
                         .then(handle => {
                             setCurrentTask(prev => {
-                            if (!handle) return prev;
-                            return { ...(prev ?? {}), ...handle };
+                                if (!handle) return prev;
+                                return { ...(prev ?? {}), ...handle };
                             });
                         })
                         .catch(err => {
@@ -42,8 +41,8 @@ export default function Admin() {
                         .update(currentTask, (updated) => setCurrentTask(updated))
                         .then(handle => {
                             setCurrentTask(prev => {
-                            if (!handle) return prev;
-                            return { ...(prev ?? {}), ...handle };
+                                if (!handle) return prev;
+                                return { ...(prev ?? {}), ...handle };
                             });
                         })
                         .catch(err => {
@@ -57,8 +56,8 @@ export default function Admin() {
                         .complete(currentTask)
                         .then(handle => {
                             setCurrentTask(prev => {
-                            if (!handle) return prev;
-                            return { ...(prev ?? {}), ...handle };
+                                if (!handle) return prev;
+                                return { ...(prev ?? {}), ...handle };
                             });
                         })
                         .catch(err => {

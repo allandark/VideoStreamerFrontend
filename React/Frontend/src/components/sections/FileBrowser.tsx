@@ -1,20 +1,19 @@
 
-import MediaFileCard from "./MediaFileCard";
+import MediaFileCard from "../cards/MediaFileCard";
 import { useEffect, useState } from "react";
-import type { MediaModel } from "../Types";
-import { getMediaFiles } from "../api/api";
+import type { MediaModel } from "../../Types";
+import { APIClient } from "../../api/api";
+
 
 export default function FileBrowser(){
 
     const [medias, setMedias] = useState<MediaModel[]>([])
 
     useEffect(() => {
-        getMediaFiles().then(data =>{
-                console.log(data);
-                setMedias(data);
-            }).catch(err =>{
-                console.log(err);
-        });
+        const client = new APIClient();
+                client.get<MediaModel>("media/upload").then(data =>{
+                    setMedias(data);
+                }).catch((err)=> console.error(err))
 
     }, []);
 

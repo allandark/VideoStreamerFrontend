@@ -31,6 +31,12 @@ export interface GenreModel{
   rating: number
 }
 
+export interface GenreCreate{
+  id?: number,
+  name: string,
+  rating: number
+}
+
 
 
 export interface HlsBuildTaskParams{

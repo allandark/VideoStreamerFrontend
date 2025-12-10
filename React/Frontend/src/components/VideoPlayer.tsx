@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { API_URL } from '../api/api';
 import Hls from 'hls.js';
 
 interface VideoProps {
@@ -46,7 +47,7 @@ export default function VideoPlayer({video_id}: VideoProps){
                 setCurrentLevel(hls.currentLevel); 
             });
 
-            hls.loadSource(`/api/media/hls/playlist/${video_id}`);
+            hls.loadSource(`${API_URL}/media/hls/playlist/${video_id}`);
             hls.attachMedia(video);
         }
 

@@ -10,8 +10,8 @@ COPY Nginx/nginx.conf.template /etc/nginx/nginx.conf.template
 COPY React/Frontend /frontend 
 
 WORKDIR /frontend
-RUN npm i deps
-RUN npm run build
+# RUN npm i deps
+# RUN npm run build
 
 CMD  ["/bin/bash", "./entry.sh"]
 
